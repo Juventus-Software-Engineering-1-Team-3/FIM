@@ -9,16 +9,14 @@ public class ConsoleClient {
 		MAN
 	}
 	// instance variables
-	public static int vehicleId;
-	public static Brand brand;
-	public static String model;
-	public static String licensePlate;
+	private static int vehicleId;
+	private static Brand brand;
+	private static String model;
+	private static String licensePlate;
 	
 	public static void main(String[] args) {
 		
-		// Scanner object for user input
 		Scanner inputScan = new Scanner(System.in);
-		
 		
 		// welcome message
 		System.out.println("\t\t\tWillkommen zu");
@@ -36,18 +34,22 @@ public class ConsoleClient {
 		
 		switch (menuNum) {
 			case 1:
-				collectVehicleInformations();
+				createVehicle();
 				break;
 			// TODO: implement displayVehicle() method
 			//case 2:
-			//	displayVehicle();
+			//	findVehicle();
+			// TODO: uncomment, when mainMenu method is implemented
+			//default:
+			//	System.out.println("Bitte geben Sie eine gültige Nummer ein!");
+			//	mainMenu();
 		}
 		
 		inputScan.close();
 	}
 	
 	
-	public static void collectVehicleInformations() {
+	private static void createVehicle() {
 		
 		Scanner inputScan = new Scanner(System.in);
 		
@@ -59,8 +61,9 @@ public class ConsoleClient {
 		
 		for (int i = 0; i < Brand.values().length; i++) {
 			System.out.println("["+(i+1)+"] "+Brand.values()[i]);
-			}
+		}
 		
+		System.out.println("\nBitte Marke auswählen!");
 		brand = Brand.values()[Integer.parseInt(inputScan.nextLine())-1];
 		System.out.println("\n*****************");
 		
@@ -72,9 +75,38 @@ public class ConsoleClient {
 		licensePlate = inputScan.nextLine();
 		System.out.println("\n*****************");
 		
-		System.out.println("\nVehicle created!");
+		// TODO: uncomment, whenever VehicleFactory is implemented
+		// VehicleFactory vehicleFactory = vehicleFactory.getInstance();
+		// IVehicle vehicle = vehicleFactory.createVehicle(vehicleId, brand, model, licensePlate);
+		
+		System.out.println("\nVehicle created!\n*****************\n");
+		
+		System.out.println("[<==] Drücken Sie eine bliebige Taste um zum Menü zurückzukehren...");
+		inputScan.nextLine();
+		
+		// Test message
+		System.out.println("Gehe zum Menü...");
+		// TODO: uncomment, when mainMenu method is implemented
+		// mainMenu();
 		
 		inputScan.close();
 	}
+	
+	// TODO: uncomment, whenever VehicleFactory is implemented
+	/*private static void findVehicle() {
+		
+		Scanner inputScan = new Scanner(System.in);
+		
+		System.out.println("\n\n##### Fahrzeug suchen #####");
+		
+		System.out.println("\nBitte Fahrzeug ID eingeben:");
+		vehicleId = Integer.parseInt(inputScan.nextLine());
+		
+		VehicleFactory vehicleFactory = vehicleFactory.getInstance();
+		IVehicle vehicle = vehicleFactory.findVehicle(vehicleId);
+		
+		inputScan.close();
+		
+	}*/
 	
 }
