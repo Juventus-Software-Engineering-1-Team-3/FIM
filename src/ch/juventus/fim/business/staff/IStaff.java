@@ -1,4 +1,4 @@
-package ch.juventus.fim.business.business;
+package ch.juventus.fim.business.staff;
 
 public interface IStaff {
 
