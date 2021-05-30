@@ -1,18 +1,32 @@
 package ch.juventus.fim.persistance.logentrydataaccess;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class LogEntryDAOMock implements ILogEntryDAO {
 
+	// TODO: Move to business
+	private final String logEntryIdKey = "logEntryId";
+
+	private List<Map<String, String>> logEntries = null;
+
+	LogEntryDAOMock() {
+		logEntries = new ArrayList<Map<String, String>>();
+	}
+
 	@Override
 	public void insertLogEntry(Map<String, String> logEntryData) {
-		// TODO: implement method
-
+		logEntries.add(logEntryData);
 	}
 
 	@Override
 	public Map<String, String> selectLogEntry(int logEntryId) {
-		// TODO: implement method
+		for (Map<String, String> logEntry : logEntries) {
+			if (logEntry.get(logEntryIdKey) == Integer.toString(logEntryId)) {
+				return logEntry;
+			}
+		}
 		return null;
 	}
 

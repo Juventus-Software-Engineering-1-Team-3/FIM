@@ -2,12 +2,12 @@ package ch.juventus.fim.persistance.vehicledataaccess;
 
 public class VehicleDAOFactory {
 
-	private VehicleDAOFactory instance = null;
+	private static VehicleDAOFactory instance = null;
 
 	private VehicleDAOFactory() {
 	}
 
-	public VehicleDAOFactory getInstance() {
+	public static VehicleDAOFactory getInstance() {
 		if (instance == null) {
 			instance = new VehicleDAOFactory();
 		}
@@ -15,7 +15,6 @@ public class VehicleDAOFactory {
 	}
 
 	public IVehicleDAO createVehicleDAO() {
-		// TODO: implement method
-		return null;
+		return new VehicleDAOMock();
 	}
 }

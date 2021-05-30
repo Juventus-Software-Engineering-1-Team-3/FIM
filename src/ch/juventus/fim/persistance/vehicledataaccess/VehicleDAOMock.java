@@ -1,17 +1,33 @@
 package ch.juventus.fim.persistance.vehicledataaccess;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class VehicleDAOMock implements IVehicleDAO {
 
+	// TODO: Move to business
+	private final String vehicleIdKey = "vehicleId";
+
+	private List<Map<String, String>> vehicles = null;
+
+	VehicleDAOMock() {
+		vehicles = new ArrayList<Map<String, String>>();
+	}
+
 	@Override
 	public void insertVehicle(Map<String, String> vehicleData) {
-		// TODO: Implement method
+		vehicles.add(vehicleData);
+
 	}
 
 	@Override
 	public Map<String, String> selectVehicle(int vehicleId) {
-		// TODO: Implement method
+		for (Map<String, String> vehicle : vehicles) {
+			if (vehicle.get(vehicleIdKey) == Integer.toString(vehicleId)) {
+				return vehicle;
+			}
+		}
 		return null;
 	}
 
