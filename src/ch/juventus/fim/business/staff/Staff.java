@@ -41,7 +41,7 @@ public class Staff implements IStaff {
 	
 	
 	// setter methods
-		public void setStaffId(int staffId) {
+	public void setStaffId(int staffId) {
 		this.staffId = staffId;
 	}
 	

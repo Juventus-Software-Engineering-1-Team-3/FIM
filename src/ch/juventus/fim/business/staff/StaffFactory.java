@@ -1,5 +1,6 @@
 package ch.juventus.fim.business.staff;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import ch.juventus.fim.persistance.staffdataaccess.IStaffDAO;
@@ -25,8 +26,12 @@ public class StaffFactory {
 		
 		IStaff staff = new Staff(staffId, staffType, name, surname, phone);
 		
-		Map<String, String> staffData = null;
-		staffData.put(staffIdData, name);
+		Map<String, String> staffData = new HashMap<>();
+		staffData.put("staffId", staffIdData);
+		staffData.put("StaffType", staffType.name());
+		staffData.put("name", name);
+		staffData.put("surname", surname);
+		staffData.put("phone", phone);
 		
 		StaffDAOFactory staffDAOFactory = StaffDAOFactory.getInstance();
 		IStaffDAO staffDAO = staffDAOFactory.createStaffDAO();
