@@ -23,7 +23,7 @@ public class LogEntryDAOMock implements ILogEntryDAO {
 	@Override
 	public Map<String, String> selectLogEntry(int logEntryId) {
 		for (Map<String, String> logEntry : logEntries) {
-			if (logEntry.get(logEntryIdKey) == Integer.toString(logEntryId)) {
+			if (logEntry.get(logEntryIdKey).equals(Integer.toString(logEntryId))) {
 				return logEntry;
 			}
 		}

@@ -18,13 +18,12 @@ public class VehicleDAOMock implements IVehicleDAO {
 	@Override
 	public void insertVehicle(Map<String, String> vehicleData) {
 		vehicles.add(vehicleData);
-
 	}
 
 	@Override
 	public Map<String, String> selectVehicle(int vehicleId) {
 		for (Map<String, String> vehicle : vehicles) {
-			if (vehicle.get(vehicleIdKey) == Integer.toString(vehicleId)) {
+			if (vehicle.get(vehicleIdKey).equals(Integer.toString(vehicleId))) {
 				return vehicle;
 			}
 		}
