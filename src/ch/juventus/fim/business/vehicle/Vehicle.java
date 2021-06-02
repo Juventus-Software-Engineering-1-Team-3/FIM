@@ -1,5 +1,10 @@
 package ch.juventus.fim.business.vehicle;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ch.juventus.fim.business.log.ILogEntry;
+
 public class Vehicle implements IVehicle {
 
 	private int vehicleId = 0;
@@ -8,10 +13,13 @@ public class Vehicle implements IVehicle {
 
 	private IVehicleType vehicleType = null;
 
-	public Vehicle(int vehicleId, String licensePlate, Brand brand) {
+	private List<ILogEntry> logEntries = null;
+
+	public Vehicle(int vehicleId, String licensePlate, IVehicleType vehicleType) {
 		this.vehicleId = vehicleId;
 		this.licensePlate = licensePlate;
-		this.vehicleType = new VehicleType(brand);
+		this.vehicleType = vehicleType;
+		this.logEntries = new ArrayList<ILogEntry>();
 	}
 
 	@Override
@@ -32,6 +40,16 @@ public class Vehicle implements IVehicle {
 	@Override
 	public IVehicleType getVehicleType() {
 		return vehicleType;
+	}
+
+	@Override
+	public List<ILogEntry> getLogEntries() {
+		return logEntries;
+	}
+
+	@Override
+	public void addLogEntry(ILogEntry logEntry) {
+		logEntries.add(logEntry);
 	}
 
 }

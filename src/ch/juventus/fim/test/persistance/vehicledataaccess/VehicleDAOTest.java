@@ -1,5 +1,9 @@
 package ch.juventus.fim.test.persistance.vehicledataaccess;
 
+import static ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO.LICENSE_PLATE_KEY;
+import static ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO.LOG_ENTRY_IDS_KEY;
+import static ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO.VEHICLE_ID_KEY;
+import static ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO.VEHICLE_TYPE_KEY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -39,14 +43,16 @@ public class VehicleDAOTest {
 
 		// Create vehicle data
 		Map<String, String> bus1 = new HashMap<String, String>();
-		bus1.put("vehicleId", "1");
-		bus1.put("licensePlate", "ZH 1");
-		bus1.put("busType", "Mercedes");
+		bus1.put(VEHICLE_ID_KEY, "1");
+		bus1.put(LICENSE_PLATE_KEY, "ZH 1");
+		bus1.put(VEHICLE_TYPE_KEY, "brand: Mercedes, model: ModelX");
+		bus1.put(LOG_ENTRY_IDS_KEY, "3, 5, 6");
 
 		Map<String, String> bus2 = new HashMap<String, String>();
-		bus2.put("vehicleId", "2");
-		bus2.put("licensePlate", "ZH 2");
-		bus2.put("busType", "MAN");
+		bus2.put(VEHICLE_ID_KEY, "2");
+		bus2.put(LICENSE_PLATE_KEY, "ZH 2");
+		bus2.put(VEHICLE_TYPE_KEY, "brand: MAN, model: ModelY");
+		bus2.put(LOG_ENTRY_IDS_KEY, "1, 2, 4");
 
 		vehicleDAO.insertVehicle(bus1);
 		vehicleDAO.insertVehicle(bus2);

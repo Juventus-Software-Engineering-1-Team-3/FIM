@@ -1,5 +1,9 @@
 package ch.juventus.fim.business.vehicle;
 
+import java.util.List;
+
+import ch.juventus.fim.business.log.ILogEntry;
+
 public interface IVehicle {
 	public int getVehicleId();
 
@@ -7,8 +11,9 @@ public interface IVehicle {
 
 	public void setLicensePLate(String licensePlate);
 
-	// TODO: Implement ILogEntry and IVehicleType
-	// public ILogEntry[] getLogEntries();
-	// public void addLogEntry(ILogEntry logEntry);
+	public List<ILogEntry> getLogEntries();
+
+	public void addLogEntry(ILogEntry logEntry);
+
 	public IVehicleType getVehicleType();
 }
