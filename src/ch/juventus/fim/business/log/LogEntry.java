@@ -1,16 +1,17 @@
 package ch.juventus.fim.business.log;
 
 import java.util.Date;
+import ch.juventus.fim.business.staff.Staff;
 
 public abstract class LogEntry implements ILogEntry {
 
 	private int logEntryId = 0;
 	private String remarks = null;
 	private Date timestamp = null;
-	// TODO Staff von IStaff, wie einbinden?
 
 	// Constructor
-	public LogEntry(int logEntryId, String remarks, Date timestamp) {
+	// nicht sicher, ob die Methode so korrekt ist mit ", Staff IStaff"
+	public LogEntry(int logEntryId, String remarks, Date timestamp, Staff IStaff) {
 		this.logEntryId = logEntryId;
 		this.remarks = remarks;
 		this.timestamp = timestamp;
