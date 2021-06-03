@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ch.juventus.fim.business.log.LogEntry;
+import ch.juventus.fim.business.logentry.LogEntry;
 import ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO;
 import ch.juventus.fim.persistance.vehicledataaccess.VehicleDAOFactory;
 

@@ -2,7 +2,7 @@ package ch.juventus.fim.business.vehicle;
 
 import java.util.List;
 
-import ch.juventus.fim.business.log.ILogEntry;
+import ch.juventus.fim.business.logentry.ILogEntry;
 
 public interface IVehicle {
 	public int getVehicleId();
