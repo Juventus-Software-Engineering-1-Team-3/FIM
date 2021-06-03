@@ -2,10 +2,34 @@ package ch.juventus.fim.business.log;
 
 import java.util.Date;
 
+import ch.juventus.fim.business.staff.IStaff;
+
 public class LogEntryShiftEnd extends LogEntry {
 
-	public LogEntryShiftEnd(int logEntryId, String remarks, Date timestamp) {
-		super(logEntryId, remarks, timestamp);
+	private double odometer = 0.0;
+	private double fuel = 0.0;
+
+	public LogEntryShiftEnd(int logEntryId, String remarks, IStaff staff, Date timestamp, double odometer,
+			double fuel) {
+		super(logEntryId, remarks, staff, timestamp);
+		this.odometer = odometer;
+		this.fuel = fuel;
+	}
+
+	public double getOdometer() {
+		return odometer;
+	}
+
+	public void setOdometer(double odometer) {
+		this.odometer = odometer;
+	}
+
+	public double getFuel() {
+		return fuel;
+	}
+
+	public void setFuel(double fuel) {
+		this.fuel = fuel;
 	}
 
 }

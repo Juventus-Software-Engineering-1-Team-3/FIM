@@ -1,21 +1,22 @@
 package ch.juventus.fim.business.log;
 
 import java.util.Date;
-import ch.juventus.fim.business.staff.Staff;
+
+import ch.juventus.fim.business.staff.IStaff;
 
 public abstract class LogEntry implements ILogEntry {
 
 	private int logEntryId = 0;
 	private String remarks = null;
 	private Date timestamp = null;
+	private IStaff staff = null;
 
 	// Constructor
-	// nicht sicher, ob die Methode so korrekt ist mit ", Staff IStaff"
-	public LogEntry(int logEntryId, String remarks, Date timestamp, Staff IStaff) {
+	public LogEntry(int logEntryId, String remarks, IStaff staff, Date timestamp) {
 		this.logEntryId = logEntryId;
 		this.remarks = remarks;
 		this.timestamp = timestamp;
-
+		this.staff = staff;
 	}
 
 	// getter methods
@@ -42,5 +43,13 @@ public abstract class LogEntry implements ILogEntry {
 
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	public IStaff getStaff() {
+		return staff;
+	}
+
+	public void setStaff(IStaff staff) {
+		this.staff = staff;
 	}
 }
