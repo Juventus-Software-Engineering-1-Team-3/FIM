@@ -1,3 +1,7 @@
+/**
+ * Console Client class
+ */
+
 package ch.juventus.fim.presentation.consoleclient;
 
 import java.time.LocalDateTime;
@@ -19,12 +23,13 @@ import ch.juventus.fim.business.vehicle.VehicleType;
 
 public class ConsoleClient {
 
-	// instance variables
+	// Initialization of instance variables
 	private VehicleFactory vehicleFactory = null;
 	private LogEntryFactory logEntryFactory = null;
 	private StaffFactory staffFactory = null;
 	private Scanner inputScan = null;
 
+	// Default Constructor
 	public ConsoleClient() {
 		vehicleFactory = VehicleFactory.getInstance();
 		logEntryFactory = LogEntryFactory.getInstance();

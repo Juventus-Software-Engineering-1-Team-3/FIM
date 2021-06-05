@@ -1,3 +1,8 @@
+/**
+ * Oil Level enumeration with their values
+ */
+
+
 package ch.juventus.fim.business.logentry;
 
 public enum OilLevel {

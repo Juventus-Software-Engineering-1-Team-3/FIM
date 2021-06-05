@@ -1,3 +1,7 @@
+/**
+ * Staff Type enumeration with their values
+ */
+
 package ch.juventus.fim.business.staff;
 
 public enum StaffType {

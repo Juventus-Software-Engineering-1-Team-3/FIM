@@ -1,3 +1,7 @@
+/**
+ * Interface for Staff Data Access Object
+ */
+
 package ch.juventus.fim.persistance.staffdataaccess;
 
 import java.util.Map;
@@ -24,8 +28,19 @@ public interface IStaffDAO {
 	 */
 	public final static String STAFF_PHONE_KEY = "phone";
 
+	/**
+	 * Inserts staffData to Map.
+	 * 
+	 * @param Map of staffData to insert
+	 */
 	public void insertStaff(Map<String, String> staffData);
 
+	/**
+	 * Selects staffData from StaffDAOMock.
+	 * 
+	 * @param staffId to search StaffDAOMock
+	 * @return HashMap containing data of given IStaff
+	 */
 	public Map<String, String> selectStaff(int staffId);
 
 }

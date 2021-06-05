@@ -1,3 +1,7 @@
+/**
+ * Vehicle Factory for create, search and save Vehicle entries
+ */
+
 package ch.juventus.fim.business.vehicle;
 
 import static ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO.LICENSE_PLATE_KEY;
@@ -18,14 +22,22 @@ import ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO;
 import ch.juventus.fim.persistance.vehicledataaccess.VehicleDAOFactory;
 
 public class VehicleFactory {
+	
+	// Initialization of instance variables
 	private static VehicleFactory instance = null;
 	private IVehicleDAO vehicleDAOMock = null;
 
+	// Default Constructor
 	private VehicleFactory() {
 		VehicleDAOFactory vehcileDAOFactory = VehicleDAOFactory.getInstance();
 		this.vehicleDAOMock = vehcileDAOFactory.createVehicleDAO();
 	}
 
+	/**
+	 * Check if a VehicleFactory instance exists and if not to create an instance
+	 * 
+	 * @return VehicleFactory instance
+	 */
 	public static VehicleFactory getInstance() {
 		if (instance == null) {
 			instance = new VehicleFactory();
@@ -33,14 +45,31 @@ public class VehicleFactory {
 		return instance;
 	}
 
+	/**
+	 * Creates IVehicle
+	 * 
+	 * @param Vehicle data to create IVehicle
+	 * @return IVehicle contains Vehicle data
+	 */
 	public IVehicle createVehicle(int vehicleId, String licensePlate, IVehicleType vehicleType) {
 		return new Vehicle(vehicleId, licensePlate, vehicleType);
 	}
 
+	/**
+	 * Saves the IVehicle in the VehicleDAOMock
+	 * 
+	 * @param IVehicle to save
+	 */
 	public void saveVehicle(IVehicle vehicle) {
 		vehicleDAOMock.insertVehicle(vehicleToMap(vehicle));
 	}
 
+	/**
+	 * Search IVehicle in the VehicleDAOMock based on the vehicleId
+	 * 
+	 * @param vehicleId to search
+	 * @return Vehicle containing data of given IVehicle
+	 */
 	public IVehicle findVehicle(int vehicleId) {
 		return mapToVehicle(vehicleDAOMock.selectVehicle(vehicleId));
 	}

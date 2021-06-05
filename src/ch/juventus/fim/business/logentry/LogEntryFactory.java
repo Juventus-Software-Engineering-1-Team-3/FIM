@@ -1,3 +1,8 @@
+/**
+ * Log Entry Factory for create, search and save Log entries
+ */
+
+
 package ch.juventus.fim.business.logentry;
 
 import java.time.LocalDateTime;
@@ -19,14 +24,22 @@ import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_EN
 import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_FUEL_KEY;
 
 public class LogEntryFactory {
+	
+	// Initialization of instance variables
 	private static LogEntryFactory instance = null;
 	private ILogEntryDAO logEntryDAOmock = null;
 
+	// Default Constructor
 	private LogEntryFactory() {
 		LogEntryDAOFactory logEntryDAOFactory = LogEntryDAOFactory.getInstance();
 		logEntryDAOmock = logEntryDAOFactory.createLogEntryDAO();
 	}
 
+	/**
+	 * Check if a LogEntryFactory instance exists and if not to create an instance
+	 * 
+	 * @return LogEntryFactory instance
+	 */
 	public static LogEntryFactory getInstance() {
 		if (instance == null) {
 			instance = new LogEntryFactory();
@@ -34,7 +47,12 @@ public class LogEntryFactory {
 		return instance;
 	}
 
-	// Creates LogEntryShiftStart
+	/**
+	 * Creates ILogEntry for shift start
+	 * 
+	 * @param LogEntryShiftStart data to create ILogEntry
+	 * @return ILogEntry contains LogEntryShiftStart data
+	 */
 	public ILogEntry createLogEntry(int logEntryId, String remarks, IStaff staff, LocalDateTime timestamp,
 			OilLevel oilLevel, TirePressure tirePressure) {
 		if (timestamp == null) {
@@ -43,7 +61,12 @@ public class LogEntryFactory {
 		return new LogEntryShiftStart(logEntryId, remarks, staff, timestamp, oilLevel, tirePressure);
 	}
 
-	// Creates LogEntryShiftEnd
+	/**
+	 * Creates ILogEntry for shift end
+	 * 
+	 * @param LogEntryShiftEnd data to create ILogEntry
+	 * @return ILogEntry contains LogEntryShiftEnd data
+	 */
 	public ILogEntry createLogEntry(int logEntryId, String remarks, IStaff staff, LocalDateTime timestamp,
 			double odometer, double fuel) {
 		if (timestamp == null) {
@@ -52,14 +75,31 @@ public class LogEntryFactory {
 		return new LogEntryShiftEnd(logEntryId, remarks, staff, timestamp, odometer, fuel);
 	}
 
+	/**
+	 * Saves the ILogEntry in the LogEntryDAOmock
+	 * 
+	 * @param ILogEntry to save
+	 */
 	public void saveLogEntry(ILogEntry logEntry) {
 		logEntryDAOmock.insertLogEntry(logEntryToMap(logEntry));
 	}
 
+	/**
+	 * Search ILogEntry in the LogEntryDAOmock based on the logEntryId
+	 * 
+	 * @param logEntryId to search
+	 * @return LogEntry containing data of given ILogEntry
+	 */
 	public ILogEntry findLogEntry(int logEntryId) {
 		return mapToLogEntry(logEntryDAOmock.selectLogEntry(logEntryId));
 	}
 
+	/**
+	 * Converts ILogEntry to Map
+	 * 
+	 * @param logEntry to convert
+	 * @return HashMap containing data of given ILogEntry
+	 */
 	private Map<String, String> logEntryToMap(ILogEntry logEntry) {
 		Map<String, String> logEntryData = new HashMap<String, String>();
 		logEntryData.put(LOG_ENTRY_ID_KEY, String.valueOf(logEntry.getLogEntryId()));
@@ -80,6 +120,12 @@ public class LogEntryFactory {
 		return logEntryData;
 	}
 
+	/**
+	 * Converts Map to ILogEntry
+	 * 
+	 * @param Map to convert
+	 * @return ILogEntry containing data of given HashMap
+	 */
 	private ILogEntry mapToLogEntry(Map<String, String> logEntry) {
 		int logEntryId = Integer.valueOf(logEntry.get(LOG_ENTRY_ID_KEY));
 		String logEntryRemarks = logEntry.get(LOG_ENTRY_REMARKS_KEY);

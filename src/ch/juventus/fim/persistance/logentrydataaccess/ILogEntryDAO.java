@@ -1,3 +1,7 @@
+/**
+ * Interface for Log Entry Data Access Object
+ */
+
 package ch.juventus.fim.persistance.logentrydataaccess;
 
 import java.util.Map;
@@ -36,8 +40,19 @@ public interface ILogEntryDAO {
 	 */
 	public final static String LOG_ENTRY_FUEL_KEY = "fuel";
 
+	/**
+	 * Inserts logEntryData to Map.
+	 * 
+	 * @param Map of logEntryData to insert
+	 */
 	public void insertLogEntry(Map<String, String> logEntryData);
 
+	/**
+	 * Selects logEntryData from LogEntryDAOMock.
+	 * 
+	 * @param logEntryId to search LogEntryDAOMock
+	 * @return HashMap containing data of given ILogEntry
+	 */
 	public Map<String, String> selectLogEntry(int logEntryId);
 
 }

@@ -1,3 +1,7 @@
+/**
+ * Interface for Vehicle Data Access Object
+ */
+
 package ch.juventus.fim.persistance.vehicledataaccess;
 
 import java.util.Map;
@@ -33,8 +37,19 @@ public interface IVehicleDAO {
 	 */
 	public final static String VEHICLE_TYPE_MODEL_KEY = "vehicleTypeModel";
 
+	/**
+	 * Inserts vehicleData to Map.
+	 * 
+	 * @param Map of vehicleData to insert
+	 */
 	public void insertVehicle(Map<String, String> vehicleData);
 
+	/**
+	 * Selects vehicleData from VehicleDAOMock.
+	 * 
+	 * @param vehicleId to search VehicleDAOMock
+	 * @return HashMap containing data of given IVehicle
+	 */
 	public Map<String, String> selectVehicle(int vehicleId);
 
 }
