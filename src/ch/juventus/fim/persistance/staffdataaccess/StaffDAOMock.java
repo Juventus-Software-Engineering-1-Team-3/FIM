@@ -5,10 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 public class StaffDAOMock implements IStaffDAO {
-
-	// TODO: Move to business
-	private final String staffIdKey = "staffId";
-
 	// Since staff is a collective noun we use staffList to diverge from a single
 	// staff
 	private List<Map<String, String>> staffList = null;
@@ -25,7 +21,7 @@ public class StaffDAOMock implements IStaffDAO {
 	@Override
 	public Map<String, String> selectStaff(int staffId) {
 		for (Map<String, String> staff : staffList) {
-			if (staff.get(staffIdKey).equals(Integer.toString(staffId))) {
+			if (staff.get(STAFF_ID_KEY).equals(Integer.toString(staffId))) {
 				return staff;
 			}
 		}
