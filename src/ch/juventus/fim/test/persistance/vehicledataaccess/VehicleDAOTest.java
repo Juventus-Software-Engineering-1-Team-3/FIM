@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +30,6 @@ public class VehicleDAOTest {
 		vehicleDAO = vehicleDAOFactory.createVehicleDAO();
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
 	/**
 	 * Tests IVehicleDAO.
 	 */
@@ -45,13 +40,13 @@ public class VehicleDAOTest {
 		Map<String, String> bus1 = new HashMap<String, String>();
 		bus1.put(VEHICLE_ID_KEY, "1");
 		bus1.put(LICENSE_PLATE_KEY, "ZH 1");
-		bus1.put(VEHICLE_TYPE_KEY, "brand: Mercedes, model: ModelX");
+		bus1.put(VEHICLE_TYPE_KEY, "brand=Mercedes, model=ModelX");
 		bus1.put(LOG_ENTRY_IDS_KEY, "3, 5, 6");
 
 		Map<String, String> bus2 = new HashMap<String, String>();
 		bus2.put(VEHICLE_ID_KEY, "2");
 		bus2.put(LICENSE_PLATE_KEY, "ZH 2");
-		bus2.put(VEHICLE_TYPE_KEY, "brand: MAN, model: ModelY");
+		bus2.put(VEHICLE_TYPE_KEY, "brand=MAN, model=ModelY");
 		bus2.put(LOG_ENTRY_IDS_KEY, "1, 2, 4");
 
 		vehicleDAO.insertVehicle(bus1);
@@ -60,8 +55,8 @@ public class VehicleDAOTest {
 		assertFalse(vehicleDAO.selectVehicle(1).isEmpty());
 		assertFalse(vehicleDAO.selectVehicle(2).isEmpty());
 
-		assertEquals(bus1.get("busType"), vehicleDAO.selectVehicle(1).get("busType"), "Could not find bus1's busType!");
-		assertEquals(bus2.get("licensePlate"), vehicleDAO.selectVehicle(2).get("licensePlate"),
+		assertEquals(bus1.get(VEHICLE_TYPE_KEY), vehicleDAO.selectVehicle(1).get(VEHICLE_TYPE_KEY), "Could not find bus1's busType!");
+		assertEquals(bus2.get(LICENSE_PLATE_KEY), vehicleDAO.selectVehicle(2).get(LICENSE_PLATE_KEY),
 				"Could not find bus2's license plate!");
 
 	}

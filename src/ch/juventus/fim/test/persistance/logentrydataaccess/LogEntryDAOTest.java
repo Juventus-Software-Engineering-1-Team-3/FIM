@@ -7,12 +7,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO;
 import ch.juventus.fim.persistance.logentrydataaccess.LogEntryDAOFactory;
+
+import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_ID_KEY;
+import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_REMARKS_KEY;
+import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_STAFF_ID_KEY;
+import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_TIMESTAMP_KEY;
+import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_TIRE_PRESSURE_KEY;
+import static ch.juventus.fim.persistance.logentrydataaccess.ILogEntryDAO.LOG_ENTRY_OIL_LEVEL_KEY;
 
 public class LogEntryDAOTest {
 	// The DAO factory
@@ -27,10 +33,6 @@ public class LogEntryDAOTest {
 		logEntryDAO = logEntryDAOFactory.createLogEntryDAO();
 	}
 
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
 	/**
 	 * Tests ILogEntryDAO.
 	 */
@@ -39,20 +41,20 @@ public class LogEntryDAOTest {
 
 		// Create logEntry data
 		Map<String, String> log1 = new HashMap<String, String>();
-		log1.put("logEntryId", "1");
-		log1.put("staffId", "1");
-		log1.put("timestamp", new Date(System.currentTimeMillis()).toString());
-		log1.put("remarks", "This is a test log entry!");
-		log1.put("tirePressure", "TooLow");
-		log1.put("oilStatus", "TooHigh");
+		log1.put(LOG_ENTRY_ID_KEY, "1");
+		log1.put(LOG_ENTRY_STAFF_ID_KEY, "1");
+		log1.put(LOG_ENTRY_TIMESTAMP_KEY, new Date(System.currentTimeMillis()).toString());
+		log1.put(LOG_ENTRY_REMARKS_KEY, "This is a test log entry!");
+		log1.put(LOG_ENTRY_TIRE_PRESSURE_KEY, "TooLow");
+		log1.put(LOG_ENTRY_OIL_LEVEL_KEY, "TooHigh");
 
 		Map<String, String> log2 = new HashMap<String, String>();
-		log2.put("logEntryId", "2");
-		log2.put("staffId", "2");
-		log2.put("timestamp", new Date(System.currentTimeMillis()).toString());
-		log2.put("remarks", "This is a test log entry!");
-		log2.put("tirePressure", "Good");
-		log2.put("oilStatus", "TooLow");
+		log2.put(LOG_ENTRY_ID_KEY, "2");
+		log2.put(LOG_ENTRY_STAFF_ID_KEY, "2");
+		log2.put(LOG_ENTRY_TIMESTAMP_KEY, new Date(System.currentTimeMillis()).toString());
+		log2.put(LOG_ENTRY_REMARKS_KEY, "This is a test log entry!");
+		log2.put(LOG_ENTRY_TIRE_PRESSURE_KEY, "Good");
+		log2.put(LOG_ENTRY_OIL_LEVEL_KEY, "TooLow");
 
 		logEntryDAO.insertLogEntry(log1);
 		logEntryDAO.insertLogEntry(log2);
@@ -60,8 +62,8 @@ public class LogEntryDAOTest {
 		assertFalse(logEntryDAO.selectLogEntry(1).isEmpty());
 		assertFalse(logEntryDAO.selectLogEntry(2).isEmpty());
 
-		assertEquals(log1.get("phone"), logEntryDAO.selectLogEntry(1).get("phone"), "Could not find drivers Phone!");
-		assertEquals(log2.get("phone"), logEntryDAO.selectLogEntry(2).get("phone"), "Could not find mechanics Phone!");
+		assertEquals(log1.get(LOG_ENTRY_REMARKS_KEY), logEntryDAO.selectLogEntry(1).get(LOG_ENTRY_REMARKS_KEY), "Could not find the comment!");
+		assertEquals(log2.get(LOG_ENTRY_TIRE_PRESSURE_KEY), logEntryDAO.selectLogEntry(2).get(LOG_ENTRY_TIRE_PRESSURE_KEY), "Could not find tire pressure!");
 
 	}
 }

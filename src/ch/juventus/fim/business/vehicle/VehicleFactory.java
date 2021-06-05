@@ -12,7 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ch.juventus.fim.business.logentry.LogEntry;
+import ch.juventus.fim.business.logentry.ILogEntry;
+import ch.juventus.fim.business.logentry.LogEntryFactory;
 import ch.juventus.fim.persistance.vehicledataaccess.IVehicleDAO;
 import ch.juventus.fim.persistance.vehicledataaccess.VehicleDAOFactory;
 
@@ -55,13 +56,12 @@ public class VehicleFactory {
 
 		List<String> logEntryIds = new ArrayList<String>();
 		vehicle.getLogEntries().forEach(logEntry -> {
-			// TODO: uncomment when logEntryId is implemented
-			// logEntryIds.add(logEntry.logEntryId);
+			logEntryIds.add(String.valueOf(logEntry.getLogEntryId()));
 		});
 
 		vehicleData.put(VEHICLE_ID_KEY, String.valueOf(vehicle.getVehicleId()));
 		vehicleData.put(LICENSE_PLATE_KEY, vehicle.getLicensePlate());
-		vehicleData.put(LOG_ENTRY_IDS_KEY, String.join(", ", logEntryIds));
+		vehicleData.put(LOG_ENTRY_IDS_KEY, String.join(",", logEntryIds));
 		vehicleData.put(VEHICLE_TYPE_KEY, String.valueOf(vehicle.getVehicleType().vehicleTypeToMap()));
 
 		return vehicleData;
@@ -76,26 +76,31 @@ public class VehicleFactory {
 	private IVehicle mapToVehicle(Map<String, String> vehicle) {
 		int vehicleId = Integer.valueOf(vehicle.get(VEHICLE_ID_KEY));
 		String licensePlate = vehicle.get(LICENSE_PLATE_KEY);
-		List<LogEntry> logEntries = new ArrayList<LogEntry>();
+		List<ILogEntry> logEntries = new ArrayList<ILogEntry>();
 
-		// TODO: uncomment when LogEntryFactory is implemented
-		// LogEntryFactory logEntryFactory = LogEntryFactory.getInstance();
+		if (vehicle.containsKey(LOG_ENTRY_IDS_KEY)) {
+			LogEntryFactory logEntryFactory = LogEntryFactory.getInstance();
 
-		for (String logEntryId : vehicle.get(LOG_ENTRY_IDS_KEY).split(",")) {
-			// TODO: uncomment when LogEntryFactory is implemented
-			// logEntries.add(logEntryFactory.findLogEntry(logEntryId));
+			if (!vehicle.get(LOG_ENTRY_IDS_KEY).isEmpty()) {
+				for (String logEntryId : vehicle.get(LOG_ENTRY_IDS_KEY).split(", ")) {
+					logEntries.add(logEntryFactory.findLogEntry(Integer.valueOf(logEntryId)));
+				}
+			}
 		}
 
 		Map<String, String> vehicleTypeMap = new HashMap<String, String>();
 		String vehicleTypeMapString = vehicle.get(VEHICLE_TYPE_KEY);
 
+		// Remove leading "{" and tailing "}"
+		vehicleTypeMapString = vehicleTypeMapString.substring(1, vehicleTypeMapString.length() - 1);
+
 		// Splitting the map string into key value string pairs
-		String[] vehicleTypeMapPairs = vehicleTypeMapString.split(",");
+		String[] vehicleTypeMapPairs = vehicleTypeMapString.split(", ");
 
 		// Iterating over the key value string pairs
 		for (String vehicleTypePair : vehicleTypeMapPairs) {
 			// Splitting key value string pair into String key and String value
-			String[] keyValue = vehicleTypePair.split(":");
+			String[] keyValue = vehicleTypePair.split("=");
 			// inserting key and value into Map
 			vehicleTypeMap.put(keyValue[0], keyValue[1]);
 		}

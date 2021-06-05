@@ -6,9 +6,6 @@ import java.util.Map;
 
 public class VehicleDAOMock implements IVehicleDAO {
 
-	// TODO: Move to business
-	private final String vehicleIdKey = "vehicleId";
-
 	private List<Map<String, String>> vehicles = null;
 
 	VehicleDAOMock() {
@@ -23,7 +20,7 @@ public class VehicleDAOMock implements IVehicleDAO {
 	@Override
 	public Map<String, String> selectVehicle(int vehicleId) {
 		for (Map<String, String> vehicle : vehicles) {
-			if (vehicle.get(vehicleIdKey).equals(Integer.toString(vehicleId))) {
+			if (vehicle.get(VEHICLE_ID_KEY).equals(Integer.toString(vehicleId))) {
 				return vehicle;
 			}
 		}
