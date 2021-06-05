@@ -17,22 +17,21 @@ public class LogEntryShiftStart extends LogEntry {
 		this.tirePressure = tirePressure;
 	}
 
-	// getter methods
+	// getter + setter methods
+	public TirePressure getTirePressure() {
+		return this.tirePressure;
+	}
+	
+	public void setTirePressure(TirePressure tirePressure) {
+		this.tirePressure = tirePressure;
+	}
+	
 	public OilLevel getOilLevel() {
 		return this.oilLevel;
 	}
 
-	public TirePressure getTirePressure() {
-		return this.tirePressure;
-	}
-
-	// setter methods
 	public void setOilLevel(OilLevel oilLevel) {
 		this.oilLevel = oilLevel;
-	}
-
-	public void setTirePressure(TirePressure tirePressure) {
-		this.tirePressure = tirePressure;
 	}
 
 }

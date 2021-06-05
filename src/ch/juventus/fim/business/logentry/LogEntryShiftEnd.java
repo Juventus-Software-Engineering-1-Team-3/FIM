@@ -16,6 +16,7 @@ public class LogEntryShiftEnd extends LogEntry {
 		this.fuel = fuel;
 	}
 
+	// getter + setter methods
 	public double getOdometer() {
 		return odometer;
 	}
