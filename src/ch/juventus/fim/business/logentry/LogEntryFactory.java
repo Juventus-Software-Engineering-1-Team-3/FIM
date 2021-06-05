@@ -74,16 +74,13 @@ public class LogEntryFactory {
 		return logEntryData;
 	}
 
-	private IStaff getStaff(int staffId) {
-		StaffFactory staffFactory = StaffFactory.getinstance();
-		return staffFactory.findStaff(staffId);
-	}
-
 	private ILogEntry mapToLogEntry(Map<String, String> logEntry) {
 		int logEntryId = Integer.valueOf(logEntry.get(LOG_ENTRY_ID_KEY));
 		String logEntryRemarks = logEntry.get(LOG_ENTRY_REMARKS_KEY);
 
-		IStaff logEntryStaff = getStaff(Integer.valueOf(logEntry.get(LOG_ENTRY_STAFF_ID_KEY)));
+		StaffFactory staffFactory = StaffFactory.getinstance();
+		IStaff logEntryStaff = staffFactory.findStaff(Integer.valueOf(logEntry.get(LOG_ENTRY_STAFF_ID_KEY)));
+
 		LocalDateTime logEntryTimestamp = LocalDateTime.parse(logEntry.get(LOG_ENTRY_TIMESTAMP_KEY));
 
 		if (logEntry.containsKey(LOG_ENTRY_OIL_LEVEL_KEY) && logEntry.containsKey(LOG_ENTRY_TIRE_PRESSURE_KEY)) {
@@ -92,12 +89,12 @@ public class LogEntryFactory {
 			return createLogEntry(logEntryId, logEntryRemarks, logEntryStaff, logEntryTimestamp, logEntryOilLevel,
 					logEntryTirePressure);
 		}
-		
+
 		// Here comes the shift end variant
 		if (logEntry.containsKey(LOG_ENTRY_ODOMETER_KEY) && logEntry.containsKey(LOG_ENTRY_FUEL_KEY)) {
 			return null;
 		}
-		
+
 		return null;
 	}
 }
