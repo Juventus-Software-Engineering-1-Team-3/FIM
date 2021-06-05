@@ -28,7 +28,7 @@ public class VehicleType implements IVehicleType {
 	@Override
 	public Map<String, String> vehicleTypeToMap() {
 		Map<String, String> vehicleType = new HashMap<String, String>();
-		vehicleType.put(VEHICLE_TYPE_BRAND_KEY, brand.toString());
+		vehicleType.put(VEHICLE_TYPE_BRAND_KEY, brand.name());
 		vehicleType.put(VEHICLE_TYPE_MODEL_KEY, model);
 		return vehicleType;
 	}

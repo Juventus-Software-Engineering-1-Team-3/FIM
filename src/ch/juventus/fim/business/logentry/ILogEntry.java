@@ -1,10 +1,12 @@
 package ch.juventus.fim.business.logentry;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import ch.juventus.fim.business.staff.IStaff;
 
 public interface ILogEntry {
+	
+	public int getLogEntryId();
 
 	public IStaff getStaff();
 
@@ -14,6 +16,6 @@ public interface ILogEntry {
 
 	public void setRemarks(String remarks);
 
-	public Date getTimestamp();
+	public LocalDateTime getTimestamp();
 
 }

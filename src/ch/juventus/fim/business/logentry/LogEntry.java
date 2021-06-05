@@ -1,6 +1,6 @@
 package ch.juventus.fim.business.logentry;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import ch.juventus.fim.business.staff.IStaff;
 
@@ -8,15 +8,19 @@ public abstract class LogEntry implements ILogEntry {
 
 	private int logEntryId = 0;
 	private String remarks = null;
-	private Date timestamp = null;
+	private LocalDateTime timestamp = null;
 	private IStaff staff = null;
 
 	// Constructor
-	public LogEntry(int logEntryId, String remarks, IStaff staff, Date timestamp) {
+	public LogEntry(int logEntryId, String remarks, IStaff staff, LocalDateTime timestamp) {
 		this.logEntryId = logEntryId;
 		this.remarks = remarks;
 		this.timestamp = timestamp;
 		this.staff = staff;
+	}
+	
+	public int getLogEntryId() {
+		return logEntryId;
 	}
 
 	// getter methods
@@ -28,7 +32,7 @@ public abstract class LogEntry implements ILogEntry {
 		return this.remarks;
 	}
 
-	public Date getTimestamp() {
+	public LocalDateTime getTimestamp() {
 		return this.timestamp;
 	}
 
@@ -41,7 +45,7 @@ public abstract class LogEntry implements ILogEntry {
 		this.remarks = remarks;
 	}
 
-	public void setTimestamp(Date timestamp) {
+	public void setTimestamp(LocalDateTime timestamp) {
 		this.timestamp = timestamp;
 	}
 

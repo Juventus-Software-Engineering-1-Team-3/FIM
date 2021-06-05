@@ -1,6 +1,6 @@
 package ch.juventus.fim.business.logentry;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import ch.juventus.fim.business.staff.IStaff;
 
@@ -10,7 +10,7 @@ public class LogEntryShiftStart extends LogEntry {
 	private TirePressure tirePressure;
 
 	// Constructor
-	public LogEntryShiftStart(int logEntryId, String remarks, IStaff staff, Date timestamp, OilLevel oilLevel,
+	public LogEntryShiftStart(int logEntryId, String remarks, IStaff staff, LocalDateTime timestamp, OilLevel oilLevel,
 			TirePressure tirePressure) {
 		super(logEntryId, remarks, staff, timestamp);
 		this.oilLevel = oilLevel;

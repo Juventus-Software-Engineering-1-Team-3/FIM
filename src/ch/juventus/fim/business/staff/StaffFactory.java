@@ -45,7 +45,7 @@ public class StaffFactory {
 	private Map<String, String> staffToMap(IStaff staff) {
 		Map<String, String> staffData = new HashMap<String, String>();
 		staffData.put(STAFF_ID_KEY, String.valueOf(staff.getStaffId()));
-		staffData.put(STAFF_TYPE_KEY, staff.getStaffType().toString());
+		staffData.put(STAFF_TYPE_KEY, staff.getStaffType().name());
 		staffData.put(STAFF_NAME_KEY, staff.getName());
 		staffData.put(STAFF_SURNAME_KEY, staff.getSurname());
 		staffData.put(STAFF_PHONE_KEY, staff.getPhone());
