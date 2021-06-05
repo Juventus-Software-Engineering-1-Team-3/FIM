@@ -23,7 +23,7 @@ public class StaffFactory {
 		staffDAOMock = staffDAOFactory.createStaffDAO();
 	}
 
-	public static StaffFactory getinstance() {
+	public static StaffFactory getInstance() {
 		if (instance == null) {
 			instance = new StaffFactory();
 		}
@@ -62,4 +62,5 @@ public class StaffFactory {
 
 		return createStaff(staffId, staffType, staffName, staffSurname, staffPhone);
 	}
+	
 }
