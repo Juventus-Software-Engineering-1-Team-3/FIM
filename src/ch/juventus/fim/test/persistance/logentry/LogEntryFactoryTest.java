@@ -32,7 +32,7 @@ public class LogEntryFactoryTest {
 	 */
 	@Test
 	public void createSaveReadLogEntryTest() {
-		StaffFactory staffFactory = StaffFactory.getinstance();
+		StaffFactory staffFactory = StaffFactory.getInstance();
 		IStaff staff = staffFactory.createStaff(1, StaffType.Driver, "Max", "Muster", "+41 79 123 45 67");
 		staffFactory.saveStaff(staff);
 

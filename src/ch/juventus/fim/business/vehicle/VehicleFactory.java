@@ -55,9 +55,12 @@ public class VehicleFactory {
 		Map<String, String> vehicleData = new HashMap<String, String>();
 
 		List<String> logEntryIds = new ArrayList<String>();
-		vehicle.getLogEntries().forEach(logEntry -> {
-			logEntryIds.add(String.valueOf(logEntry.getLogEntryId()));
-		});
+		
+		if (!vehicle.getLogEntries().isEmpty()) {
+			vehicle.getLogEntries().forEach(logEntry -> {
+				logEntryIds.add(String.valueOf(logEntry.getLogEntryId()));
+			});
+		}
 
 		vehicleData.put(VEHICLE_ID_KEY, String.valueOf(vehicle.getVehicleId()));
 		vehicleData.put(LICENSE_PLATE_KEY, vehicle.getLicensePlate());

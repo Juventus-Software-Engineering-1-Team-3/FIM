@@ -37,12 +37,18 @@ public class LogEntryFactory {
 	// Creates LogEntryShiftStart
 	public ILogEntry createLogEntry(int logEntryId, String remarks, IStaff staff, LocalDateTime timestamp,
 			OilLevel oilLevel, TirePressure tirePressure) {
+		if (timestamp == null) {
+			return new LogEntryShiftStart(logEntryId, remarks, staff, LocalDateTime.now(), oilLevel, tirePressure);
+		}
 		return new LogEntryShiftStart(logEntryId, remarks, staff, timestamp, oilLevel, tirePressure);
 	}
 
 	// Creates LogEntryShiftEnd
 	public ILogEntry createLogEntry(int logEntryId, String remarks, IStaff staff, LocalDateTime timestamp,
 			double odometer, double fuel) {
+		if (timestamp == null) {
+			return new LogEntryShiftEnd(logEntryId, remarks, staff, LocalDateTime.now(), odometer, fuel);
+		}
 		return new LogEntryShiftEnd(logEntryId, remarks, staff, timestamp, odometer, fuel);
 	}
 
@@ -78,7 +84,7 @@ public class LogEntryFactory {
 		int logEntryId = Integer.valueOf(logEntry.get(LOG_ENTRY_ID_KEY));
 		String logEntryRemarks = logEntry.get(LOG_ENTRY_REMARKS_KEY);
 
-		StaffFactory staffFactory = StaffFactory.getinstance();
+		StaffFactory staffFactory = StaffFactory.getInstance();
 		IStaff logEntryStaff = staffFactory.findStaff(Integer.valueOf(logEntry.get(LOG_ENTRY_STAFF_ID_KEY)));
 
 		LocalDateTime logEntryTimestamp = LocalDateTime.parse(logEntry.get(LOG_ENTRY_TIMESTAMP_KEY));
