@@ -1,4 +1,4 @@
-package ch.juventus.fim.test.persistance.logentry;
+package ch.juventus.fim.test.business.logentry;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

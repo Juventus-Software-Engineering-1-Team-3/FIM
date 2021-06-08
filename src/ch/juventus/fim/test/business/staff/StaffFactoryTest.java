@@ -1,4 +1,4 @@
-package ch.juventus.fim.test.persistance.staff;
+package ch.juventus.fim.test.business.staff;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

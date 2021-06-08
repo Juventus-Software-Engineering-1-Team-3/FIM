@@ -1,4 +1,4 @@
-package ch.juventus.fim.test.persistance.vehicle;
+package ch.juventus.fim.test.business.vehicle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
