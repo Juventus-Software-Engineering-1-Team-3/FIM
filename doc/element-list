@@ -1,0 +1,14 @@
+ch.juventus.fim
+ch.juventus.fim.business.logentry
+ch.juventus.fim.business.staff
+ch.juventus.fim.business.vehicle
+ch.juventus.fim.persistance.logentrydataaccess
+ch.juventus.fim.persistance.staffdataaccess
+ch.juventus.fim.persistance.vehicledataaccess
+ch.juventus.fim.presentation.consoleclient
+ch.juventus.fim.test.persistance.logentry
+ch.juventus.fim.test.persistance.logentrydataaccess
+ch.juventus.fim.test.persistance.staff
+ch.juventus.fim.test.persistance.staffdataaccess
+ch.juventus.fim.test.persistance.vehicle
+ch.juventus.fim.test.persistance.vehicledataaccess
